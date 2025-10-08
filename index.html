@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Meet Gabriele Perna, Drip</title>
+    <meta name="description" content="Skeleton personal website: resume, certificates, work experiences, hobbies, skills, 3D models menu, poems menu. Pure HTML/CSS/JS." />
+    <style>
+        :root{
+          --bg:#0f1724;
+          --card:#0b1220;
+          --muted:#9aa4b2;
+          --accent:#7dd3fc;
+          --glass: rgba(255,255,255,0.03);
+          --radius:12px;
+          --gap:16px;
+          font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+          color-scheme: dark;
+        }
+        *{box-sizing:border-box}
+        body{
+          margin:0;
+          background:linear-gradient(180deg,#031026 0%, #071025 60%);
+          color:#e6eef6;
+          -webkit-font-smoothing:antialiased;
+          -moz-osx-font-smoothing:grayscale;
+        }
+        header{
+          display:flex;
+          align-items:center;
+          gap:16px;
+          padding:18px 22px;
+          border-bottom:1px solid rgba(255,255,255,0.03);
+          position:sticky;top:0;background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);
+          z-index:50;
+        }
+        .brand{display:flex;align-items:center;gap:12px}
+        .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#6ee7b7);display:flex;align-items:center;justify-content:center;font-weight:700;color:#022;box-shadow:0 4px 18px rgba(0,0,0,0.6)}
+        nav{margin-left:auto;display:flex;gap:10px}
+        nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px;font-size:14px}
+        nav a.active{background:rgba(125,211,252,0.08);color:var(--accent)}
+
+        main{padding:28px;max-width:1100px;margin:0 auto}
+        .grid{display:grid;grid-template-columns:320px 1fr;gap:var(--gap)}
+
+        .panel{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 6px 30px rgba(2,6,23,0.6)}
+        .avatar{width:100%;display:flex;flex-direction:column;align-items:center;gap:12px}
+        .avatar img{width:120px;height:120px;border-radius:18px;object-fit:cover}
+        .name{font-size:20px;font-weight:700}
+        .subtitle{color:var(--muted);font-size:13px}
+        .small{font-size:13px;color:var(--muted)}
+        .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+        .chip{background:var(--glass);padding:6px 8px;border-radius:9px;font-size:13px;color:var(--muted)}
+
+        .section{margin-bottom:18px}
+        .section-title{display:flex;align-items:center;justify-content:space-between;gap:12px}
+        .section-title h2{margin:0;font-size:16px}
+        .controls{display:flex;gap:8px}
+        .btn{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:6px 10px;border-radius:8px;color:var(--muted);font-size:13px;cursor:pointer}
+        .btn:hover{border-color:rgba(125,211,252,0.12);color:var(--accent)}
+
+        .collapsible{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border-radius:12px;padding:12px;margin-top:10px;border:1px solid rgba(255,255,255,0.02)}
+        .coll-head{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer}
+        .coll-head .meta{display:flex;gap:8px;align-items:center}
+        .coll-body{margin-top:10px;display:none}
+        .coll-body.open{display:block}
+
+        table{width:100%;border-collapse:collapse}
+        table td, table th{padding:8px 6px;border-bottom:1px dashed rgba(255,255,255,0.03);font-size:14px;color:#dbe9f8}
+        table th{color:var(--muted);font-weight:600;font-size:13px;text-align:left}
+
+        .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);background:linear-gradient(180deg, rgba(1,6,12,0.7), rgba(1,6,12,0.9));z-index:100;opacity:0;pointer-events:none;transition:opacity .18s}
+        .modal.open{opacity:1;pointer-events:auto}
+        .modal .box{width:min(1100px,94%);max-height:86vh;overflow:auto;background:linear-gradient(180deg,#071428,#041427);padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03)}
+
+        @media (max-width:880px){
+          .grid{grid-template-columns:1fr;}
+          nav{display:none}
+          .avatar img{width:96px;height:96px}
+        }
+        .muted{color:var(--muted)}
+        .placeholder{color:var(--muted);font-style:italic}
+    </style>
+</head>
+<body>
+<header>
+    <div class="brand">
+        <div class="logo">M</div>
+        <div>
+            <div style="font-weight:700">Gabriele Perna — Digital Self-Book</div>
+            <div style="font-size:12px;color:var(--muted)">Skeleton site | Pure HTML/CSS/JS</div>
+        </div>
+    </div>
+    <nav>
+        <a href="#home" class="active" data-route="home">Home</a>
+        <a href="#models" data-route="models">3D Models</a>
+        <a href="#poems" data-route="poems">Poems</a>
+        <a href="#about" data-route="about">About / Contact</a>
+    </nav>
+</header>
+
+<main id="app">
+    <section id="page-home" class="page" data-page="home">
+        <div class="grid">
+            <aside class="panel">
+                <div class="avatar">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><rect width='100%' height='100%' fill='%23081b2a'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='80' fill='%237dd3fc' font-family='Arial'>M</text></svg>" alt="Avatar">
+                    <div class="name">Michele (Drip)</div>
+                    <div class="subtitle">Student · Developer · Creator</div>
+                    <div class="small">Short bio / tagline. Replace with something quick about you.</div>
+                    <div class="links">
+                        <div class="chip">🎮 Roguelike fan</div>
+                        <div class="chip">💻 Java / OOP</div>
+                        <div class="chip">📸 Trips & Photos</div>
+                    </div>
+                </div>
+            </aside>
+
+            <div>
+                <div class="panel section">
+                    <div class="section-title">
+                        <h2>Basic info</h2>
+                        <div class="controls">
+                            <button class="btn" onclick="toggleAll(false)">Collapse all</button>
+                            <button class="btn" onclick="toggleAll(true)">Expand all</button>
+                        </div>
+                    </div>
+
+                    <div class="collapsible" data-id="basic-contact">
+                        <div class="coll-head" onclick="toggleCollapse(this)">
+                            <div class="meta"><div style="font-weight:700">Profile</div><div class="muted" style="font-size:13px">Short summary & preferred pronouns</div></div>
+                            <div><button class="btn" onclick="event.stopPropagation();maximizeSection('basic-contact')">Maximize</button></div>
+                        </div>
+                        <div class="coll-body">
+                            <p class="placeholder">Add a short paragraph about yourself. Avoid sharing private data like address.</p>
+                        </div>
+                    </div>
+
+                    <div class="collapsible" data-id="certificates">
+                        <div class="coll-head" onclick="toggleCollapse(this)">
+                            <div class="meta"><div style="font-weight:700">Certificates</div><div class="muted" style="font-size:13px">Add course/cert name, issuer, date, link</div></div>
+                            <div><button class="btn" onclick="event.stopPropagation();maximizeSection('certificates')">Maximize</button></div>
+                        </div>
+                        <div class="coll-body">
+                            <table>
+                                <tr><th>Certificate</th><th>Issuer</th><th>Date</th><th>Link</th></tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="collapsible" data-id="work-experiences">
+                        <div class="coll-head" onclick="toggleCollapse(this)">
+                            <div class="meta"><div style="font-weight:700">Work Experiences</div><div class="muted" style="font-size:13px">Jobs, internships, and key roles</div></div>
+                            <div><button class="btn" onclick="event.stopPropagation();maximizeSection('work-experiences')">Maximize</button></div>
+                        </div>
+                        <div class="coll-body">
+                            <table>
+                                <tr><th>Position</th><th>Company</th><th>Duration</th><th>Description</th></tr>
+                                <tr><td>Example: Junior Developer</td><td>TechCorp</td><td>2023–2024</td><td>Worked on frontend tools and automation scripts.</td></tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="collapsible" data-id="hobbies">
+                        <div class="coll-head" onclick="toggleCollapse(this)">
+                            <div class="meta"><div style="font-weight:700">Hobbies</div><div class="muted" style="font-size:13px">Games, photography, DIY, etc.</div></div>
+                            <div><button class="btn" onclick="event.stopPropagation();maximizeSection('hobbies')">Maximize</button></div>
+                        </div>
+                        <div class="coll-body">
+                            <table>
+                                <tr><th>Hobby</th><th>Description</th></tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="collapsible" data-id="skills">
+                        <div class="coll-head" onclick="toggleCollapse(this)">
+                            <div class="meta"><div style="font-weight:700">Skills</div><div class="muted" style="font-size:13px">Languages, tools, soft skills</div></div>
+                            <div><button class="btn" onclick="event.stopPropagation();maximizeSection('skills')">Maximize</button></div>
+                        </div>
+                        <div class="coll-body">
+                            <table>
+                                <tr><th>Skill</th><th>Level / Notes</th></tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="collapsible" data-id="links">
+                        <div class="coll-head" onclick="toggleCollapse(this)">
+                            <div class="meta"><div style="font-weight:700">Links & Social</div><div class="muted" style="font-size:13px">GitHub, LinkedIn, Discord, etc.</div></div>
+                            <div><button class="btn" onclick="event.stopPropagation();maximizeSection('links')">Maximize</button></div>
+                        </div>
+                        <div class="coll-body">
+                            <table>
+                                <tr><th>Platform</th><th>Handle / Link</th></tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:12px;display:flex;gap:8px">
+                        <a class="btn" href="#models" onclick="routeTo('models')">Open 3D Models menu →</a>
+                        <a class="btn" href="#poems" onclick="routeTo('poems')">Open Poems menu →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="page-models" class="page" data-page="models" style="display:none">
+        <div class="panel">
+            <div class="section-title"><h2>3D Models</h2><div class="controls"><button class="btn" onclick="routeTo('home')">← Back</button></div></div>
+        </div>
+    </section>
+
+    <section id="page-poems" class="page" data-page="poems" style="display:none">
+        <div class="panel">
+            <div class="section-title"><h2>Poems</h2><div class="controls"><button class="btn" onclick="routeTo('home')">← Back</button></div></div>
+        </div>
+    </section>
+
+    <section id="page-about" class="page" data-page="about" style="display:none">
+        <div class="panel">
+            <div class="section-title"><h2>About / Contact</h2><div class="controls"><button class="btn" onclick="routeTo('home')">← Back</button></div></div>
+        </div>
+    </section>
+</main>
+
+<div id="modal" class="modal" aria-hidden="true">
+    <div class="box"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="font-weight:700">Expanded view</div><div><button class="btn" onclick="closeModal()">Close</button></div></div><div id="modal-content"></div></div>
+</div>
+
+<script>
+    function routeTo(page){document.querySelectorAll('.page').forEach(p=>p.style.display='none');const el=document.querySelector('#page-'+page);if(el)el.style.display='block';document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));const a=document.querySelector('nav a[data-route="'+page+'"]');if(a)a.classList.add('active');window.location.hash=page;}
+    document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();routeTo(a.dataset.route)}));
+    (function(){const hash=location.hash.replace('#','')||'home';routeTo(hash);})();
+
+    function toggleCollapse(head){const wrap=head.closest('.collapsible');const body=wrap.querySelector('.coll-body');body.classList.toggle('open');}
+    function toggleAll(open){document.querySelectorAll('.coll-body').forEach(b=>b.classList.toggle('open',open));}
+    function maximizeSection(id){const wrap=document.querySelector('[data-id="'+id+'"]');if(!wrap)return;const body=wrap.querySelector('.coll-body');const modal=document.getElementById('modal');const target=document.getElementById('modal-content');target.innerHTML='';const clone=body.cloneNode(true);clone.style.display='block';clone.classList.add('open');target.appendChild(clone);modal.classList.add('open');}
+    function closeModal(){document.getElementById('modal').classList.remove('open');}
+</script>
+</body>
+</html>
